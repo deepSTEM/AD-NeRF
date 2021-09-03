@@ -111,4 +111,4 @@ def load_test_data(basedir, aud_file, test_pose_file='transforms_train.json',
     with open(os.path.join(basedir, 'transforms_train.json')) as fp:
         meta_torso = json.load(fp)
     torso_pose = np.array(meta_torso['frames'][0]['transform_matrix'])
-    return poses, auds, bc_img, [H, W, focal, cx, cy], aud_ids, torso_pose
+    return poses, auds, bc_img, [H, W, focal, cx, cy], aud_ids, torso_pose # transform_matrix, aud_features, required image, basic settings

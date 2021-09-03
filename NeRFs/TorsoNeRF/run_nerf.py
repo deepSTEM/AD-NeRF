@@ -585,7 +585,7 @@ def config_parser():
                         help='layers in fine network')
     parser.add_argument("--netwidth_fine", type=int, default=256,
                         help='channels per layer in fine network')
-    parser.add_argument("--N_rand", type=int, default=1024,
+    parser.add_argument("--N_rand", type=int, default=2048,
                         help='batch size (number of random rays per gradient step)')
     parser.add_argument("--lrate", type=float, default=5e-4,
                         help='learning rate')
@@ -720,13 +720,13 @@ def train():
         com_images = np.zeros(1)
     else:
         com_images, poses, auds, bc_img, hwfcxy, sample_rects, \
-            i_split = load_audface_data(args.datadir, args.testskip)
+            i_split = load_audface_data(args.datadir, args.testskip) ## transform_matrix, aud_features, required image, basic settings
 
     if args.with_test == 0:
         i_train, i_val = i_split
 
-    near = args.near
-    far = args.far
+    near = args.near # near sampling plane
+    far = args.far # far sampling plane
 
     # Cast intrinsics to right types
     H, W, focal, cx, cy = hwfcxy
